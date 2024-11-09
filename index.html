@@ -94,29 +94,29 @@
         </div>
     </div>
 
-    <!--Portfolio-->
     <div id="Portfolio">
         <div class="container">
             <h1 class="sub-title">My Work</h1>
-            <div class="work-list">
+            <div class="work-list" id="work-list">
+                <!-- Initial Work Items -->
                 <div class="work1">
-                    <img src="th (1).jpeg">
+                    <img src="work.png" alt="Time synchronization app">
                     <div class="layer">
-                        <h3>Time synchronization app</h3>
+                        <h3>Time Synchronization App</h3>
                         <p>This app synchronizes your mobile time with NPL time</p>
                         <a href="https://github.com/Sarthakpunj/NEW-NPL-APP">click here</a>
                     </div>
                 </div>
                 <div class="work1">
-                    <img src="work.png">
+                    <img src="work.png" alt="Virtual assistant">
                     <div class="layer">
-                        <h3>Virtual assitant using python</h3>
-                        <p>Basic code in python that explores python libraries speach to text</p>
+                        <h3>Virtual Assistant</h3>
+                        <p>Basic code in Python that explores speech-to-text libraries</p>
                         <a href="https://github.com/Sarthakpunj/Virtual-assistant-.">click here</a>
                     </div>
                 </div>
                 <div class="work1">
-                    <img src="th (2).jpeg">
+                    <img src="th (2).jpeg" alt="UI/UX Design">
                     <div class="layer">
                         <h3>UI/UX Design</h3>
                         <p>My Figma Designs</p>
@@ -124,10 +124,87 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="btn">see more</a>
+            <!-- See More Button -->
+            <button onclick="loadMoreWork()" class="btn">See More</button>
         </div>
     </div>
-
+    
+    <!-- JavaScript for Loading More Work -->
+    <script>
+        let isWorkLoaded = false; // Flag to check if works are already loaded
+    
+        function loadMoreWork() {
+            if (isWorkLoaded) return; // Exit if works are already loaded
+    
+            const workList = document.getElementById("work-list");
+    
+            // Additional Work Items
+            const moreWorks = [
+                {
+                    imgSrc: "work.png",
+                    title: "Examination Webpage",
+                    description: "Created a basic examination environment for Vitrendz club.",
+                    link: "https://sarthakpunj.github.io/Vitrendz-p/"
+                },
+                {
+                    imgSrc: "work.png",
+                    title: "Health Tracker",
+                    description: "Generates synthetic dataset simulating IMU sensor readings.",
+                    link: "https://sarthakpunj.github.io/health_tracker/"
+                },
+                {
+                    imgSrc: "work.png",
+                    title: "Fooditian",
+                    description: "Created basic app for GDSC Hackathon.",
+                    link: "https://sarthakpunj.github.io/FOODITIANFINAL/"
+                },
+                {
+                    imgSrc: "work.png",
+                    title: "CV-Xray",
+                    description: "Created prototype for Hackerearth hackathon.",
+                    link: "https://github.com/Sarthakpunj/CV_analyser_final"
+                },
+                {
+                    imgSrc: "work.png",
+                    title: "Food label reader",
+                    description: "Code reads back of food labels and tells what is inside.",
+                    link: "https://github.com/Sarthakpunj/Food_label_reader/blob/main/food_label_reader.ipynb"
+                },
+                {
+                    imgSrc: "work.png",
+                    title: "Deep learning",
+                    description: "Codes for deep learning concepts",
+                    link: "https://github.com/Sarthakpunj/deep-learning/blob/main/Untitled22.ipynb"
+                },
+                {
+                    imgSrc: "work.png",
+                    title: "Exploratory data analysis",
+                    description: "Codes for EDA concepts",
+                    link: "https://github.com/Sarthakpunj/EDA_DA_1_FINAL/blob/main/21BDS0115_Sarthak_Punj_EDA_Theory_DA_1_Final.ipynb"
+                }
+                
+            ];
+    
+            // Append New Items
+            moreWorks.forEach(work => {
+                const workDiv = document.createElement("div");
+                workDiv.classList.add("work1");
+    
+                workDiv.innerHTML = `
+                    <img src="${work.imgSrc}" alt="${work.title}">
+                    <div class="layer">
+                        <h3>${work.title}</h3>
+                        <p>${work.description}</p>
+                        <a href="${work.link}" target="_blank">click here</a>
+                    </div>
+                `;
+                workList.appendChild(workDiv);
+            });
+    
+            isWorkLoaded = true; // Set flag to true after loading new items
+        }
+    </script>
+    
     <!--contact-->
     <div id="Contact">
     <div class="contact">
@@ -172,5 +249,38 @@
       typeSpeed: 50,
     });
   </script>
+ <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        let elem = document.documentElement; // Select the entire document
+
+        // Function to request fullscreen
+        function openFullscreen() {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { // For Safari
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { // For IE11
+                elem.msRequestFullscreen();
+            }
+        }
+
+        // Attempt to enter fullscreen initially
+        setTimeout(() => {
+            openFullscreen();
+        }, 100); // Short delay for compatibility
+
+        // Check if fullscreen is active after a delay
+        setTimeout(() => {
+            if (!(document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement)) {
+                // If not in fullscreen, prompt the user
+                let userConfirmed = confirm("This website is best viewed in fullscreen. Would you like to enter fullscreen mode?");
+                if (userConfirmed) {
+                    openFullscreen();
+                }
+            }
+        }, 500); // Delay for checking fullscreen status
+    });
+</script>
+
 </body>
 </html>

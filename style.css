@@ -9,39 +9,43 @@ body{
     color: #fff;
 }
 
-#header{
+#header {
     width: 100%;
     height: 100vh;
     background-size: cover;
     background-position: center;
+    position: relative;
 }
-.container{
+
+.container {
     padding: 10px 10%;
 }
 
-nav{
+nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
 }
-.logo{
-    width: 140px;    
+
+.logo {
+    width: 140px;
 }
 
-nav ul li{
+nav ul li {
     display: inline-block;
     list-style: none;
-    margin: 10px 20px ;
+    margin: 10px 20px;
 }
 
-nav ul li a{
+nav ul li a {
     color: white;
-    text-decoration: none;   /* To remove undelrline and bad link color*/
+    text-decoration: none;
     font-size: 18px;
     position: relative;
 }
-nav ul li a::after{    
+
+nav ul li a::after {
     content: '';
     width: 0;
     height: 3px;
@@ -49,25 +53,63 @@ nav ul li a::after{
     position: absolute;
     left: 0;
     bottom: -6px;
-    transition: 0.5s;   /* get a 0.5 sec delay when we hover to get red line */
+    transition: 0.5s;
 }
 
-nav ul li a:hover::after{  /* so as to get a red line wirdth 100 % when we hover*/
+nav ul li a:hover::after {
     width: 100%;
 }
 
-.header-text{
+.header-text {
     margin-top: 5%;
-    font-size: 30px;  
+    font-size: 30px;
 }
 
-.header-text h1{
+.header-text h1 {
     font-size: 60px;
     margin-top: 5px;
 }
 
-.container1 span{
+.container1 span {
     color: #ff004f;
+}
+
+/* Responsive Design */
+
+/* Custom styles for small screens (up to 600px) */
+@media only screen and (max-width: 600px) {
+    /* Hide elements except for logo, name, and download button */
+    .header-text, .container1 span, .right, #element {
+        display: none;
+    }
+
+    /* Show only the name, logo, and CV download button */
+    .header-text h1 {
+        display: block;
+        font-size: 24px;
+        text-align: center;
+        margin-top: 20%;
+    }
+
+    .header-text h1 span {
+        color: #ff004f;
+    }
+
+    /* Center download button */
+    .btn.btn2 {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 30px;
+        text-align: center;
+    }
+
+    /* Center the logo */
+    .logo {
+        display: block;
+        margin: 20px auto;
+        width: 58px;
+        height: auto;
+    }
 }
 
 /* about*/
@@ -369,4 +411,171 @@ html{
 }
 .btn2{
     margin-right: 505px;
+}
+
+@media (max-width: 1200px) {
+    .about-col-1 img {
+        height: 480px;
+        width: 300px;
+    }
+}
+
+@media (max-width: 992px) {
+    nav ul li {
+        margin: 10px 10px;
+    }
+    .tab-title {
+        flex-wrap: wrap;
+    }
+    .tab-links {
+        margin-right: 20px;
+    }
+    .sub-title {
+        font-size: 40px;
+    }
+    .container1 {
+        padding: 10px 5%;
+    }
+    .header-text h1 {
+        font-size: 50px;
+    }
+}
+@media only screen and (max-width: 600px){
+    #header{
+        background-image: none;
+    }
+    .header-text{
+        margin-top: 100%;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    nav ul li {
+        margin: 5px 5px;
+    }
+    .tab-links {
+        font-size: 16px;
+    }
+    .container {
+        padding: 10px 5%;
+    }
+    .sub-title {
+        font-size: 35px;
+    }
+    .work1 img {
+        height: 250px;
+    }
+    .social-icons a {
+        font-size: 24px;
+        margin-right: 10px;
+    }
+    .right img {
+        height: 350px;
+        width: 350px;
+    }
+}
+
+@media (max-width: 576px) {
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    nav ul li {
+        margin: 5px 0;
+    }
+    .h12 {
+        font-size: 40px;
+    }
+    .h12 span {
+        font-size: 50px;
+    }
+    .header-text h1 {
+        font-size: 35px;
+    }
+    .container1 span {
+        font-size: 30px;
+    }
+    .about-col-1, .about-col-2 {
+        flex-basis: 100%;
+    }
+    .tab-title {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .tab-links {
+        margin: 5px 0;
+    }
+    .tab-contents ul li {
+        font-size: 14px;
+    }
+    .sub-title {
+        font-size: 30px;
+    }
+    .container1 {
+        padding: 10px;
+    }
+    .right img {
+        height: 250px;
+        width: 250px;
+    }
+    .btn {
+        padding: 10px 30px;
+    }
+    #element {
+        font-size: 24px;
+        margin-top: 100px;
+    }
+    .social-icons img {
+        margin-left: 20px;
+        height: 30px;
+        width: 30px;
+    }
+    .contact-left {
+        padding: 10px;
+        margin-top: 5%;
+    }
+}
+
+@media (max-width: 400px) {
+    .sub-title {
+        font-size: 24px;
+    }
+    .tab-title {
+        flex-direction: column;
+        font-size: 14px;
+    }
+    .tab-links {
+        font-size: 14px;
+    }
+    .h12 {
+        font-size: 30px;
+    }
+    .h12 span {
+        font-size: 35px;
+    }
+    .container1 span {
+        font-size: 24px;
+    }
+    .work1 img {
+        height: 200px;
+    }
+    .btn {
+        padding: 8px 20px;
+    }
+    .social-icons a {
+        font-size: 18px;
+        margin-right: 8px;
+    }
+    #element {
+        font-size: 20px;
+        margin-top: 80px;
+    }
+}
+
+/* Ensure images and elements do not overflow on very small screens */
+img, .about-col-1 img, .right img {
+    max-width: 100%;
+    height: auto;
 }

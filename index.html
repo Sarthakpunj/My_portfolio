@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
+    
 </head>
 <body>
     <div id="header">
-        <div class="container">
+        <div id="container">
             <nav>
                 <img class="logooo" src="Asset 2@4x-8.png" class="logo">
                 <ul>
@@ -18,24 +19,73 @@
                     <li><a href="#Contact">Contact</a></li>
                 </ul>
             </nav>
-        <div class="container1">
-            <div class="code">
-            <h1 class="h12">Hi, I am <span>Sarthak Punj</span></h1><br>
+    <div class="container1">
+        <!-- Element with typing effect positioned above "Hi, I am Sarthak Punj" -->
+
+        <div id="element"> </div><br>
+        <div class="row1">
+            <!-- Left section with text and button -->
+            <div class="left">
+                <h1 class="h12">Hi, I am <span class="name-highlight">Sarthak Punj</span></h1>
+                <a href="Cv.pdf" download class="btn btn2">Download CV</a>
             </div>
-            <div class="row1">
-                  <div class="right">
-                    <a href="Cv.pdf" download class="btn btn2">Download CV</a>
-                    <img src="Nerd-amico.png" alt="">
-                </div>
-                <span id="element"></span>
+            
+            <!-- Right section with image -->
+            <div class="right">
+                <img src="Nerd-amico.png" alt="Nerd Illustration" id="nerd-amico">
             </div>
         </div>
-        
     </div>
-        </div>
-    </div>
-    <!-------------------about section--------------------------->
-    <div id="about"> 
+</div>   
+</div>
+    
+<script>
+    const elementContent = ["Python Developer", "Web Developer", "UI/UX Designer", "AI Innovator", "Research Enthusiast"];
+    let currentIndex = 0;
+    let currentText = "Python Developer";
+    let currentChar = 0;
+    let isErasing = false; // To track if we are in erasing phase
+
+    // Adjust speed and timing for smoother typing effect
+    const typingSpeed = 50; // Speed of typing each character (in ms)
+    const erasingSpeed = 50; // Speed of erasing each character (in ms)
+    const newTextDelay = 2000; // Delay before starting to erase after full typing (in ms)
+
+    function typeEffect() {
+        if (!isErasing) {
+            if (currentChar < elementContent[currentIndex].length) {
+                currentText += elementContent[currentIndex].charAt(currentChar);
+                document.getElementById("element").innerText = currentText;
+                currentChar++;
+                setTimeout(typeEffect, typingSpeed);
+            } else {
+                // Wait for a while before starting to erase
+                setTimeout(() => {
+                    isErasing = true;
+                    setTimeout(typeEffect, typingSpeed); // Start erasing
+                }, newTextDelay);
+            }
+        } else {
+            if (currentChar > 0) {
+                currentText = currentText.substring(0, currentChar - 1);
+                document.getElementById("element").innerText = currentText;
+                currentChar--;
+                setTimeout(typeEffect, erasingSpeed);
+            } else {
+                // Once erasing is complete, move to the next string
+                isErasing = false;
+                currentIndex = (currentIndex + 1) % elementContent.length;
+                setTimeout(typeEffect, typingSpeed); // Start typing the next string
+            }
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", typeEffect);
+</script>
+
+    
+     <!-------------------about section--------------------------->
+     <div id="about"> 
         <div class="container">
             <div class="row">
                 <div class="about-col-1">
@@ -241,14 +291,27 @@
             document.getElementById(tabname).classList.add("active-tab")
         }
     </script>
-    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <!-- Setup and start animation! -->
-  <script>
-    var typed = new Typed('#element', {
-      strings: ['Python Developer','UI/UX Designer','Web Developer','Research enthusiast'],
-      typeSpeed: 50,
-    });
-  </script>
+   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+   <script>
+       var typed = new Typed('#element', {
+           strings: ['Python Developer', 'UI/UX Designer', 'Web Developer', 'Research Enthusiast'],
+           typeSpeed: 10,           // Adjusted typing speed (in ms per character)
+           backSpeed: 30,           // Speed of backspacing (in ms per character)
+           backDelay: 1000,         // Delay before backspacing begins (in ms)
+           startDelay: 500,         // Delay before typing starts (in ms)
+           loop: true,              // Keep the effect looping
+           showCursor: false,       // Hide the cursor
+       });
+   </script>
+<style>
+    #element {
+        font-size: 30px;
+        font-weight: bold;
+        color: #ff004f;  /* Change this to any color you want */
+        margin-top: 50px;
+    }
+</style>
  <script>
     document.addEventListener("DOMContentLoaded", () => {
         let elem = document.documentElement; // Select the entire document
@@ -281,6 +344,62 @@
         }, 500); // Delay for checking fullscreen status
     });
 </script>
+<script>
+    function adjustForSmallScreens() {
+    // Get screen width
+    const screenWidth = window.innerWidth;
 
+    // Get elements you want to control visibility for
+    const greeting = document.getElementById('greeting');
+    const name = document.getElementById('name');
+    const downloadButton = document.querySelector('.btn.btn2');
+    const element = document.getElementById('element');
+
+    // For screens smaller than 500px, hide everything except name and download button
+    if (screenWidth < 500) {
+        greeting.style.display = 'none';
+        element.style.display = 'none';
+        downloadButton.style.display = 'block';
+        name.style.display = 'block';
+    } else {
+        // For screens larger than or equal to 500px, show everything
+        greeting.style.display = 'block';
+        element.style.display = 'block';
+        downloadButton.style.display = 'block';
+        name.style.display = 'block';
+    }
+}
+
+// Run the function when the page is loaded or when resized
+window.addEventListener('load', adjustForSmallScreens);
+window.addEventListener('resize', adjustForSmallScreens);
+
+</script>   
+<script>
+    function opentab(tabName) {
+    var contents = document.querySelectorAll('.tab-contents');
+    var links = document.querySelectorAll('.tab-links');
+    
+    // Hide all tab contents
+    contents.forEach(function(content) {
+        content.classList.remove('active-tab');
+    });
+
+    // Remove active class from all tab links
+    links.forEach(function(link) {
+        link.classList.remove('active-link');
+    });
+
+    // Show the selected tab and make its link active
+    document.getElementById(tabName).classList.add('active-tab');
+    var activeLink = Array.from(links).find(link => link.innerText === tabName);
+    if (activeLink) {
+        activeLink.classList.add('active-link');
+    }
+}
+
+</script>
+    
+    
 </body>
 </html>
